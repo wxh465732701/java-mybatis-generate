@@ -4,55 +4,57 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-   <context id="MySQLTables" targetRuntime="MyBatis3">
-        <plugin type="org.mybatis.generator.plugins.FluentBuilderMethodsPlugin" />
-        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
-        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+    <context id="MySQLTables" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <commentGenerator type="com.wxh.mybatis.NewbatisGenerator">
+            <!-- 是否去除自动生成日期的注释 true：是 ： false:否 -->
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除所有自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/zg_localhost?useSSL=false"
-                        userId="root"
-                        password="123456">
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.root}"
+                        password="${jdbc.password}">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="com.edu.spring.mybatis.model"
+        <javaModelGenerator targetPackage="${generator.model.path}"
                             targetProject="./src/main/java">
-            <property name="enableSubPackages" value="true" />
-            <property name="trimStrings" value="true" />
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.edu.spring.mybatis.mapper"
-                         targetProject="./src/main/resources/mapper">
-            <property name="enableSubPackages" value="true" />
+        <sqlMapGenerator targetPackage="${generator.sqlMap.path}"
+                         targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="MIXEDMAPPER"
-                             targetPackage="com.edu.spring.mybatis.mapper"
-                             targetProject="./src/main/java">
-            <property name="enableSubPackages" value="true" />
-        </javaClientGenerator>
+        <!-- 对于mybatis来说，即生成Mapper接口，注意，如果没有配置该元素，那么默认不会生成Mapper接口
+        targetPackage/targetProject:同javaModelGenerator
+        type：选择怎么生成mapper接口（在MyBatis3/MyBatis3Simple下）：
+            1，ANNOTATEDMAPPER：会生成使用Mapper接口+Annotation的方式创建（SQL生成在annotation中），不会生成对应的XML；
+            2，MIXEDMAPPER：使用混合配置，会生成Mapper接口，并适当添加合适的Annotation，但是XML会生成在XML中；
+            3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
+        注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
+        -->
 
-       <table tableName="crl_business_detail_report" domainObjectName="CrlBusinessDetailReportEntity" schema="test" >
-           <generatedKey column="id" sqlStatement="LAST_INSERT_ID()" identity="true" />
-       </table>
-       <table tableName="crl_channel_product_relation" domainObjectName="CrlChannelProductRelation" schema="test" >
-           <!--           <generatedKey column="id" sqlStatement="CALL IDENTITY()" identity="true" />-->
-       </table>
-       <table tableName="crl_compensation_record" domainObjectName="CrlCompensationRecord" schema="test" >
-           <!--           <generatedKey column="id" sqlStatement="CALL IDENTITY()" identity="true" />-->
-       </table>
-       <table tableName="crl_compensation_detail" domainObjectName="CrlCompensationDetail" schema="test" >
-           <!--           <generatedKey column="id" sqlStatement="CALL IDENTITY()" identity="true" />-->
-       </table>
-       <table tableName="crl_compensation_execute_info" domainObjectName="CrlCompensationExecuteInfo" schema="test" >
-           <!--           <generatedKey column="id" sqlStatement="CALL IDENTITY()" identity="true" />-->
-       </table>
-       <table tableName="crl_compensation_pay_notify_info" domainObjectName="CrlCompensationPayNotifyInfoEntity" schema="test" >
-           <!--           <generatedKey column="id" sqlStatement="CALL IDENTITY()" identity="true" />-->
-       </table>
-       <table tableName="crl_data_report_record" domainObjectName="CrlDataReportRecord" schema="test" >
-           <!--           <generatedKey column="id" sqlStatement="CALL IDENTITY()" identity="true" />-->
-       </table>
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="${generator.client.path}"
+                             targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <table tableName="crl_business_detail_report" domainObjectName="CrlBusinessDetailReportEntity" schema="test" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="crl_data_report_record" domainObjectName="CrlDataReportRecord" schema="test" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="id" sqlStatement="MySql" identity="true" type=""/>
+        </table>
     </context>
 </generatorConfiguration>
