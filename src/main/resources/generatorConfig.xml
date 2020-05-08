@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+   <context id="MySQLTables" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.FluentBuilderMethodsPlugin" />
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/zg_localhost?useSSL=false"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.edu.spring.mybatis.model"
+                            targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.edu.spring.mybatis.mapper"
+                         targetProject="./src/main/resources/mapper">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="MIXEDMAPPER"
+                             targetPackage="com.edu.spring.mybatis.mapper"
+                             targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+       <table tableName="crl_business_detail_report" domainObjectName="CrlBusinessDetailReportEntity" schema="test" >
+           <generatedKey column="id" sqlStatement="LAST_INSERT_ID()" identity="true" />
+       </table>
+       <table tableName="crl_channel_product_relation" domainObjectName="CrlChannelProductRelation" schema="test" >
+           <!--           <generatedKey column="id" sqlStatement="CALL IDENTITY()" identity="true" />-->
+       </table>
+       <table tableName="crl_compensation_record" domainObjectName="CrlCompensationRecord" schema="test" >
+           <!--           <generatedKey column="id" sqlStatement="CALL IDENTITY()" identity="true" />-->
+       </table>
+       <table tableName="crl_compensation_detail" domainObjectName="CrlCompensationDetail" schema="test" >
+           <!--           <generatedKey column="id" sqlStatement="CALL IDENTITY()" identity="true" />-->
+       </table>
+       <table tableName="crl_compensation_execute_info" domainObjectName="CrlCompensationExecuteInfo" schema="test" >
+           <!--           <generatedKey column="id" sqlStatement="CALL IDENTITY()" identity="true" />-->
+       </table>
+       <table tableName="crl_compensation_pay_notify_info" domainObjectName="CrlCompensationPayNotifyInfoEntity" schema="test" >
+           <!--           <generatedKey column="id" sqlStatement="CALL IDENTITY()" identity="true" />-->
+       </table>
+       <table tableName="crl_data_report_record" domainObjectName="CrlDataReportRecord" schema="test" >
+           <!--           <generatedKey column="id" sqlStatement="CALL IDENTITY()" identity="true" />-->
+       </table>
+    </context>
+</generatorConfiguration>
