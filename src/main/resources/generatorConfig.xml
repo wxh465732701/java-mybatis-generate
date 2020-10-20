@@ -63,11 +63,11 @@
                 JDBC      :相当于在生成的insert元素上添加useGeneratedKeys="true"和keyProperty属性
         <generatedKey column="" sqlStatement=""/>
          -->
-        <table tableName="crl_business_detail_report" domainObjectName="CrlBusinessDetailReportEntity" schema="test" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+        <table tableName="crl_auto_repayment_batch_execute_info" domainObjectName="CrlAutoRepaymentBatchExecuteInfoEntity" schema="test" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
         </table>
-        <table tableName="crl_data_report_record" domainObjectName="CrlDataReportRecord" schema="test" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+        <table tableName="crl_auto_repayment_batch_detail" domainObjectName="CrlAutoRepaymentBatchDetailEntity" schema="test" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
         </table>
